@@ -5,15 +5,20 @@ import 'package:inter_autismo/screens/home/home_screen.dart';
 
 import '../../../style_guide.dart';
 
-class SignFormController extends StatefulWidget {
+enum SingingCharacter { microempreendedor, consultor }
+
+class SignUpForm extends StatefulWidget {
   @override
-  _SignFormControllerState createState() => _SignFormControllerState();
+  _SignUpFormState createState() => _SignUpFormState();
 }
 
-class _SignFormControllerState extends State<SignFormController> {
+class _SignUpFormState extends State<SignUpForm> {
+  SingingCharacter _character = SingingCharacter.microempreendedor;
   final _formKey = GlobalKey<FormState>();
   late String email;
   late String password;
+  // ignore: non_constant_identifier_names
+  late String conform_password;
   bool remember = false;
   final List<String> errors = [];
 
@@ -44,27 +49,12 @@ class _SignFormControllerState extends State<SignFormController> {
             buildEmailFormField(),
             SizedBox(height: 10),
             buildPasswordFormField(),
+            SizedBox(height: 10),
+            buildConformPassFormField(),
             FormError(errors: errors),
             SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                GestureDetector(
-                  // onTap: () => Navigator.pushNamed(
-                  //     context, ForgotPasswordScreen.routeName),
-                  child: Text(
-                    "Esqueceu a senha?",
-                    style: kStyleSubTitle.copyWith(
-                      color: azulEscuro,
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                )
-              ],
-            ),
-            SizedBox(height: 20),
             DefaultButton(
-              text: "Entrar",
+              text: "Continue",
               press: () {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
@@ -73,6 +63,84 @@ class _SignFormControllerState extends State<SignFormController> {
               },
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Row buildRadioTip() {
+    return Row(
+      children: [
+        Radio(
+          value: SingingCharacter.microempreendedor,
+          groupValue: _character,
+          onChanged: (SingingCharacter? value) {
+            setState(() {
+              _character = value!;
+            });
+          },
+        ),
+        Text("Microempreendedor"),
+        Radio(
+          value: SingingCharacter.consultor,
+          groupValue: _character,
+          onChanged: (SingingCharacter? value) {
+            setState(() {
+              _character = value!;
+            });
+          },
+        ),
+        Text("Consultor")
+      ],
+    );
+  }
+
+  TextFormField buildConformPassFormField() {
+    return TextFormField(
+      obscureText: true,
+      onSaved: (newValue) => conform_password = newValue!,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          removeError(error: kPassNullError);
+        } else if (value.isNotEmpty && password == conform_password) {
+          removeError(error: kMatchPassError);
+        }
+        conform_password = value;
+      },
+      validator: (value) {
+        if (value!.isEmpty) {
+          addError(error: kPassNullError);
+          return "";
+        } else if ((password != value)) {
+          addError(error: kMatchPassError);
+          return "";
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        prefixIcon: Icon(Icons.lock_rounded, color: azulEscuro),
+        hintText: "Confirme a sua senha",
+        hintStyle: kStyleSubTitle.copyWith(
+          color: azulEscuro.withOpacity(0.20),
+        ),
+        filled: true,
+        contentPadding: EdgeInsets.all(15),
+        fillColor: preto.withOpacity(0.1),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(100),
+          borderSide: BorderSide(color: Colors.transparent),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(100),
+          borderSide: BorderSide(color: Colors.transparent),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(100),
+          borderSide: BorderSide(color: Colors.red),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(100),
+          borderSide: BorderSide(color: Colors.transparent),
         ),
       ),
     );
@@ -102,7 +170,7 @@ class _SignFormControllerState extends State<SignFormController> {
       },
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.lock_rounded, color: azulEscuro),
-        hintText: "Coloque sua senha",
+        hintText: "Digite a sua senha",
         hintStyle: kStyleSubTitle.copyWith(
           color: azulEscuro.withOpacity(0.20),
         ),
@@ -131,9 +199,8 @@ class _SignFormControllerState extends State<SignFormController> {
 
   TextFormField buildEmailFormField() {
     return TextFormField(
-      style: kStyleSubTitle,
       keyboardType: TextInputType.emailAddress,
-      onSaved: (String? newValue) => email = newValue!,
+      onSaved: (newValue) => email = newValue!,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kEmailNullError);
@@ -154,7 +221,7 @@ class _SignFormControllerState extends State<SignFormController> {
       },
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.mail_rounded, color: azulEscuro),
-        hintText: "Digite seu e-mail",
+        hintText: "Digite o seu email",
         hintStyle: kStyleSubTitle.copyWith(
           color: azulEscuro.withOpacity(0.20),
         ),

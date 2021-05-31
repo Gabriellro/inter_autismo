@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inter_autismo/screens/home/home_screen.dart';
+import 'package:inter_autismo/screens/sign_up/sign_up_screen.dart';
 
 import 'screens/sign_in/sing_in_screen.dart';
 
@@ -8,5 +9,6 @@ import 'screens/sign_in/sing_in_screen.dart';
 final Map<String, WidgetBuilder> routes = {
   // .routeName: (context) => (),
   SignInScreen.routeName: (context) => SignInScreen(),
+  SignUpScreen.routeName: (context) => SignUpScreen(),
   HomeScreen.routeName: (context) => HomeScreen(),
 };

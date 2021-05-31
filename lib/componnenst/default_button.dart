@@ -8,7 +8,7 @@ class DefaultButton extends StatelessWidget {
     required this.press,
   }) : super(key: key);
   final String text;
-  final Function press;
+  final Function() press;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class DefaultButton extends StatelessWidget {
             ),
           ),
         ),
-        onPressed: () {},
+        onPressed: press,
         child: Text(
           text,
           style: kStyleTitle.copyWith(color: branco),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../style_guide.dart';
+
 class FormError extends StatelessWidget {
   const FormError({
     Key? key,
@@ -29,6 +31,7 @@ class FormError extends StatelessWidget {
         ),
         Text(
           error,
+          style: kStyleCaption.copyWith(color: Colors.red),
         ),
       ],
     );

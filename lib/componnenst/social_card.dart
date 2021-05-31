@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:inter_autismo/style_guide.dart';
 
 class SocialCard extends StatelessWidget {
@@ -8,7 +9,7 @@ class SocialCard extends StatelessWidget {
     required this.press,
   }) : super(key: key);
 
-  final IconData icon;
+  final String icon;
   final String press;
 
   @override
@@ -24,11 +25,12 @@ class SocialCard extends StatelessWidget {
         ),
         height: (40),
         width: (40),
+        padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
           color: azulClaro,
           shape: BoxShape.circle,
         ),
-        child: Icon(
+        child: SvgPicture.asset(
           icon,
           color: branco,
         ),

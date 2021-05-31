@@ -13,23 +13,15 @@ const azulEscuro = Color(0xFF0E2F72);
 const azul = Color(0xFF124193);
 const azulClaro = Color(0xFF0073BC);
 const preto = Color(0xFF000000);
-const preto50 = Color(0xab000000);
+const cinza = Color(0xFFC7C5C6);
 const branco = Color(0xFFFFFFFF);
-const branco2 = Color(0xFFFF1F1F1);
 
 // Estilos de caracteres
 const kStyleDisplay = TextStyle(
   fontFamily: 'Quicksand',
-  letterSpacing: 0.3,
+  letterSpacing: 0.5,
   fontSize: 30,
   fontWeight: FontWeight.w700,
-  shadows: <Shadow>[
-    Shadow(
-      offset: Offset(1.0, 2.0),
-      blurRadius: 3.0,
-      color: preto50,
-    ),
-  ],
 );
 
 const kStyleTitle = TextStyle(

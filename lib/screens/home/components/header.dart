@@ -13,9 +13,23 @@ class Header extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-              child: Text(
-                'InterAutismo',
-                style: kStyleDisplay,
+              child: RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: "Inter",
+                      style: kStyleTitle2.copyWith(
+                        color: amarelo,
+                      ),
+                    ),
+                    TextSpan(
+                      text: "Autismo",
+                      style: kStyleTitle2.copyWith(
+                        color: azul,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             IconButton(
