@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.inter_autismo">
    <application
-        android:label="inter_autismo"
+        android:label="InterDown"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

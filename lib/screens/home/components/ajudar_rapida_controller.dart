@@ -17,12 +17,12 @@ class AjudaRapidaController extends StatelessWidget {
     return Row(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+          padding: EdgeInsets.only(right: 15, top: 20),
           child: Column(
             children: [
               Container(
-                width: 60,
-                height: 60,
+                width: 65,
+                height: 65,
                 decoration: BoxDecoration(
                   color: preto.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(15),
@@ -33,6 +33,7 @@ class AjudaRapidaController extends StatelessWidget {
                   color: ajudaRapidaModel.color,
                 ),
               ),
+              SizedBox(height: 4),
               Text(
                 ajudaRapidaModel.category,
                 style: kStyleCaption.copyWith(color: preto),

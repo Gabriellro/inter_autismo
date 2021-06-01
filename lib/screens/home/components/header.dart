@@ -23,7 +23,7 @@ class Header extends StatelessWidget {
                       ),
                     ),
                     TextSpan(
-                      text: "Autismo",
+                      text: "Down",
                       style: kStyleTitle2.copyWith(
                         color: azul,
                       ),
@@ -42,7 +42,7 @@ class Header extends StatelessWidget {
             CircleAvatar(
               radius: 14,
               backgroundColor: azulEscuro,
-            )
+            ),
           ],
         ),
       ),

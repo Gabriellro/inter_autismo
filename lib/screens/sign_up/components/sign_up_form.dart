@@ -58,7 +58,30 @@ class _SignUpFormState extends State<SignUpForm> {
               press: () {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
-                  Navigator.pushNamed(context, HomeScreen.routeName);
+                  Navigator.of(context).push(
+                    PageRouteBuilder(
+                      pageBuilder: (BuildContext context,
+                          Animation<double> animation,
+                          Animation<double> secondaryAnimation) {
+                        return HomeScreen();
+                      },
+                      transitionsBuilder: (BuildContext context,
+                          Animation<double> animation,
+                          Animation<double> secondaryAnimation,
+                          Widget child) {
+                        return Align(
+                          child: SlideTransition(
+                            position: Tween(
+                              begin: Offset(1.0, 0.0),
+                              end: Offset(0.0, 0.0),
+                            ).animate(animation),
+                            child: child,
+                          ),
+                        );
+                      },
+                      transitionDuration: Duration(milliseconds: 400),
+                    ),
+                  );
                 }
               },
             ),

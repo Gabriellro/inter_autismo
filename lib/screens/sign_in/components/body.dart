@@ -11,6 +11,7 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(
           children: [
             // Header(),
@@ -37,7 +38,7 @@ class Body extends StatelessWidget {
                     ),
                   ),
                   TextSpan(
-                    text: "Autismo",
+                    text: "Down",
                     style: kStyleDisplay.copyWith(
                       color: azul,
                       shadows: <Shadow>[
@@ -113,8 +114,32 @@ class Body extends StatelessWidget {
                   style: kStyleSubTitle.copyWith(color: preto),
                 ),
                 GestureDetector(
-                  onTap: () =>
-                      Navigator.pushNamed(context, SignUpScreen.routeName),
+                  onTap: () {
+                    Navigator.of(context).push(
+                      PageRouteBuilder(
+                        pageBuilder: (BuildContext context,
+                            Animation<double> animation,
+                            Animation<double> secondaryAnimation) {
+                          return SignUpScreen();
+                        },
+                        transitionsBuilder: (BuildContext context,
+                            Animation<double> animation,
+                            Animation<double> secondaryAnimation,
+                            Widget child) {
+                          return Align(
+                            child: SlideTransition(
+                              position: Tween(
+                                begin: Offset(1.0, 0.0),
+                                end: Offset(0.0, 0.0),
+                              ).animate(animation),
+                              child: child,
+                            ),
+                          );
+                        },
+                        transitionDuration: Duration(milliseconds: 400),
+                      ),
+                    );
+                  },
                   child: Text(
                     "Inscrever-se",
                     style: kStyleSubTitle.copyWith(
@@ -125,7 +150,7 @@ class Body extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 30),
+            SizedBox(height: 22),
           ],
         ),
       ),
