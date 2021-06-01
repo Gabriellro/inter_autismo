@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:inter_autismo/screens/blog/blog_screen.dart';
 import 'package:inter_autismo/screens/home/home_screen.dart';
-import 'package:inter_autismo/screens/sign_in/sing_in_screen.dart';
+import 'package:inter_autismo/screens/videos/videos_screen.dart';
+
 import 'package:inter_autismo/style_guide.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -53,8 +55,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
           index == 0
               ? Navigator.pushNamed(context, HomeScreen.routeName)
               : index == 1
-                  ? Navigator.pushNamed(context, SignInScreen.routeName)
-                  : Navigator.pushNamed(context, HomeScreen.routeName);
+                  ? Navigator.pushNamed(context, BlogScreen.routeName)
+                  : Navigator.pushNamed(context, VideosScreen.routeName);
         });
       },
       child: Container(

@@ -61,21 +61,22 @@ class _DestaquesControllerState extends State<DestaquesController> {
                 Row(
                   children: [
                     ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(8),
                       child: Container(
-                        width: 30,
-                        height: 30,
+                        width: 40,
+                        height: 40,
                         child: Image.asset(
                           widget.destaquesModel.profilePic,
                           fit: BoxFit.cover,
                         ),
                       ),
                     ),
+                    SizedBox(width: 5),
                     RichText(
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: widget.destaquesModel.name,
+                            text: widget.destaquesModel.name + "\n",
                             style: kStyleSubTitle.copyWith(color: branco),
                           ),
                           TextSpan(
